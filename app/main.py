@@ -1,14 +1,26 @@
 from typing import Union
 
 from fastapi import FastAPI, Response, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from .payloads import Payload
-from .main_controller import compute_tfidf_bm25
+from .main_controller import compute_tfidf_bm25, get_data
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 print("started")
+
 @app.get("/")
 def home():
-    return "You are Home!"
+    response = get_data()
+    return response
 
 @app.post("/search")
 def read_root(payload: Payload):

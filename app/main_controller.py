@@ -16,3 +16,6 @@ def compute_tfidf_bm25(query: str, document: list[str] = samples):
     except:
         # print(Exception)
         return "something went wrong"
+    
+def get_data():
+    return samples
