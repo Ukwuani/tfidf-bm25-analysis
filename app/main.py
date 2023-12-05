@@ -29,6 +29,6 @@ def read_root(payload: Payload):
 
 
 @app.get("/search")
-def read_item(query: str):
+def read_item(query: str = ""):
     response = compute_tfidf_bm25(query)
     return response
